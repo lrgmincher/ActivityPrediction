@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MappageComponent } from './mappage/mappage.component';
 
 const routes: Routes = [
-  { path: 'app-mappage', component: MappageComponent }
+  { path: 'map', component: MappageComponent }
 ];
 
 @NgModule({
