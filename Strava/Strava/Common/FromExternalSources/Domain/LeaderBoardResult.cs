@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Strava.Common.FromExternalSources.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,6 @@ namespace Strava.Common.Domain
 
         [JsonProperty(PropertyName = "entries")]
         public List<entry> entries { get; set; }
-
-        [JsonProperty(PropertyName = "effort_count")]
-        public int effort_count { get; set; }
 
     }
 }

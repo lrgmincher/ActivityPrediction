@@ -19,12 +19,13 @@ namespace Strava.Common.FromExternalSources.Domain
         public int moving_time { get; set; }
 
         [JsonProperty(PropertyName = "start_date")]
-        public int start_date { get; set; }
+        public DateTime start_date { get; set; }
 
-        //[JsonProperty(PropertyName = "elapsed_time")]
-        //public int elapsed_name { get; set; }
+        [JsonProperty(PropertyName = "elapsed_time")]
+        public DateTime start_date_local { get; set; }
 
-        //[JsonProperty(PropertyName = "elapsed_time")]
-        //public int elapsed_name { get; set; }
+        [JsonProperty(PropertyName = "rank")]
+        public int rank { get; set; }
+
     }
 }
