@@ -1,0 +1,10 @@
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.csprojAssemblyReference.cache
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.csproj.CoreCompileInputs.cache
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Strava.exe.config
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Strava.exe
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Strava.pdb
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.exe
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.pdb
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.csproj.CopyComplete
