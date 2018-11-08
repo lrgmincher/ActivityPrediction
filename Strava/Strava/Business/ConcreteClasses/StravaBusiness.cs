@@ -51,9 +51,12 @@ namespace Strava
             foreach (var coord in coordinates)
             {
                 segmentData = _stravaProvider.GetSegments(getCoordArea(coord), TravelTypes.travelTypesApiParameters[travelEnum.Cycling]).Result;
-                if(segmentData != null)
+                if(segmentData.segments != null && segmentData.segments?.Count >0 )
                 {
-                    segments.Add(segmentData.segments[rnd.Next(0, segmentData.segments.Count - 1)]);
+                    foreach(var segment in segmentData.segments)
+                    {
+                        segments.Add(segment);
+                    }
                 }
 
             }

@@ -8,8 +8,8 @@ namespace Strava.Common.InternalData
 {
     public static class DataAccessContext
     {
-        public const string RandomCoordinatePath = "C:/Users/JFJSt/Desktop/Development/Machine Learning/Strava/Strava/DataStore";
-        public const string SegmentToSearchPath = "C:/Users/JFJSt/Desktop/Development/Machine Learning/Strava/Strava/DataStore";
+        public const string RandomCoordinatePath = "../../DataStore";
+        public const string SegmentToSearchPath = "../../DataStore";
 
     }
 }
