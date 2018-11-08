@@ -41,7 +41,7 @@ namespace Strava
                     sectionAndEffortData.Add(new SegmentAndEffortData(segementToSearch, leaderBoardResult));
                 }
             }
-            
+            Console.Read();
 
         }
     }     

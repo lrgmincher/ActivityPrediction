@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Strava.Common.Domain;
 using Strava.Common.FromExternalSources.Domain;
 using System;
 using System.Collections.Generic;
@@ -44,9 +45,15 @@ namespace Strava
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl + segmentsUrl + "/" + segmentId + "/" + leaderBoardUrl + "?" + perPageQuery + perPage + "&" + dateRangeQuery + dateRange + "&" + accessTokenQuery + accessToken);
-                var data = await response.Content.ReadAsStringAsync();
-
-
+                var data =  response.Content.ReadAsStringAsync().Result;
+                try
+                {
+                    LeaderBoardResult leaderBoardResult = JsonConvert.DeserializeObject<LeaderBoardResult>(data);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 return data;
             }
 
