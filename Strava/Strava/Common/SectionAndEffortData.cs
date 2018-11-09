@@ -11,11 +11,11 @@ namespace Strava.Common
     public struct SegmentAndEffortData
     {
         public segment Segment { get; set; }
-        public LeaderBoardResult Result { get; set; }
-        public SegmentAndEffortData(segment segment, LeaderBoardResult leaderBoardResult)
+        public entry Effort { get; set; }
+        public SegmentAndEffortData(segment segment, entry leaderBoardEntry)
         {
             Segment = segment;
-            Result = leaderBoardResult;
+            Effort = leaderBoardEntry;
         }
 
     }

@@ -1,0 +1,1 @@
+start/d "C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug" Strava.exe

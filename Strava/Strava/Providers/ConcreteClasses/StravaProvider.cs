@@ -34,27 +34,28 @@ namespace Strava
             perPageQuery = "per_page=";
             accessTokenQuery = "access_token=";
             dateRangeQuery = "this_month";
-            accessToken = "5bf43834e6524a289832143b09d03dde0a8e7105";
+            accessToken = "0b0ca9d7ba064bf81fe973dc683d0e542c950720";
             
         }
 
-        public async Task<string> GetLeaderBoardResultsAsync(int segmentId)
+        public async Task<LeaderBoardResult> GetLeaderBoardResultsAsync(int segmentId)
         {
-            int perPage = 100;
-            string dateRange = "this_month";
+            int perPage = ApiDetails.MaxResultsPerPage;
+            string dateRange = "this_week";
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl + segmentsUrl + "/" + segmentId + "/" + leaderBoardUrl + "?" + perPageQuery + perPage + "&" + dateRangeQuery + dateRange + "&" + accessTokenQuery + accessToken);
                 var data =  response.Content.ReadAsStringAsync().Result;
+                LeaderBoardResult leaderBoardResult = new LeaderBoardResult();
                 try
                 {
-                    LeaderBoardResult leaderBoardResult = JsonConvert.DeserializeObject<LeaderBoardResult>(data);
+                    leaderBoardResult = JsonConvert.DeserializeObject<LeaderBoardResult>(data);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
-                return data;
+                return leaderBoardResult;
             }
 
         }

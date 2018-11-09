@@ -20,7 +20,7 @@ namespace Strava
         {
             StravaBusiness stravaBusiness = new StravaBusiness();
 
-            int numberOfLeaderBoardsToCheck = 10;
+            int numberOfLeaderBoardsToCheck = 600;
 
             IRandomNumberGen randomNumbersProvider = new PsuedoRandomNumberGen();
 
@@ -30,18 +30,30 @@ namespace Strava
 
             //stravaBusiness.SaveSegmentsToSearch(segmentsToSearch);
 
-            List<LeaderBoardResult> leaderBoardResults = new List<LeaderBoardResult>();
+            LeaderBoardResult leaderBoardResults;
             List<SegmentAndEffortData> sectionAndEffortData = new List<SegmentAndEffortData>();
 
             foreach(var segementToSearch in segmentsToSearch)
             {
                 leaderBoardResults = stravaBusiness.GetLeaderBoardResultsAsync(segementToSearch.id);
-                foreach(var leaderBoardResult in leaderBoardResults)
+                if (leaderBoardResults.entries?.Count == leaderBoardResults.entry_count)
                 {
-                    sectionAndEffortData.Add(new SegmentAndEffortData(segementToSearch, leaderBoardResult));
+                   foreach(var entry in leaderBoardResults.entries)
+                    {
+                        sectionAndEffortData.Add(new SegmentAndEffortData(segementToSearch, entry));
+
+                    }
                 }
+                else Console.WriteLine("not all entries have been selected. Total Entries = " + leaderBoardResults.entry_count + ", Returned results = " + leaderBoardResults.entries?.Count ?? "0");
+
             }
-            Console.Read();
+
+
+            stravaBusiness.SaveDetails(sectionAndEffortData);
+
+            List<SectionEffortStatistics> statistics = stravaBusiness.GetSectionEffortStatistics(sectionAndEffortData);
+
+            stravaBusiness.SaveStatistics(statistics);
 
         }
     }     

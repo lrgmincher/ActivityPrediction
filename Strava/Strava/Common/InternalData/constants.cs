@@ -10,6 +10,5 @@ namespace Strava.Common.InternalData
     {
         public const float lattitudeWidth = 0.5F;
         public const float longtitudeHeight = 0.5F;
-
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Business\ConcreteClasses\RealRandomNumbers.cs" />
     <Compile Include="Business\Interfaces\IRandomNumberGen.cs" />
     <Compile Include="Common\FromExternalSources\Coordinates.cs" />
+    <Compile Include="Common\FromExternalSources\Domain\ApiDetails.cs" />
     <Compile Include="Common\FromExternalSources\Domain\coordinates.cs" />
     <Compile Include="Common\FromExternalSources\Domain\entry.cs" />
     <Compile Include="Common\FromExternalSources\Domain\segmentJsonArray.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Common\InternalData\Cyclist.cs" />
     <Compile Include="Common\InternalData\DataAccessContext.cs" />
     <Compile Include="Common\SectionAndEffortData.cs" />
+    <Compile Include="Common\SectionEffortStatistics.cs" />
     <Compile Include="Common\SegmentsToSearch.cs" />
     <Compile Include="Common\TravelTypes.cs" />
     <Compile Include="Providers\ConcreteClasses\DataAccessProvider.cs" />

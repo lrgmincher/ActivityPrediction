@@ -17,7 +17,7 @@ namespace Strava.Common.Domain
         public int entry_count { get; set; }
 
         [JsonProperty(PropertyName = "kom_type")]
-        public int kom_type { get; set; }
+        public string kom_type { get; set; }
 
         [JsonProperty(PropertyName = "entries")]
         public List<entry> entries { get; set; }

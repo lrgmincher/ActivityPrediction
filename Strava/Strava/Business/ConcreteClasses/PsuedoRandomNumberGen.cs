@@ -24,18 +24,13 @@ namespace Strava.Business.ConcreteClasses
             path = DataAccessContext.RandomCoordinatePath + "/" + DateTime.Now.Ticks;
             List<Coordinates> coordinateCollection = new List<Coordinates>();
             Coordinates coordinates;
-            using (StreamWriter file = new StreamWriter(path))
-            {
-                file.WriteLine("{");
-                
+
                 for (int i = 0; i < NumberOfCoordinates; i++)
                 {
                     coordinates = GetPsuedoRandomCoords();
                     coordinateCollection.Add(coordinates);
-                    file.WriteLine("[" + coordinates.Lattitude + "," + coordinates.Longtitude + "]");
                 }
-                file.WriteLine("}");
-            }
+            
             return coordinateCollection;
         }
 
