@@ -16,16 +16,16 @@ namespace Strava
     {
         private IStravaProvider _stravaProvider;
         private string path = "";
-        public StravaBusiness()
+        public StravaBusiness(string accessToken)
         {
-            _stravaProvider = new StravaProvider();
+            _stravaProvider = new StravaProvider(accessToken);
         }
 
         public LeaderBoardResult GetLeaderBoardResultsAsync(int id)
         {
-           Task<LeaderBoardResult> result = _stravaProvider.GetLeaderBoardResultsAsync(id);
-
-            return result.Result;
+           Task<LeaderBoardResult> task = Task.Run(() => _stravaProvider.GetLeaderBoardResultsAsync(id));
+            task.Wait();
+            return task.Result;
         }
 
         public List<SegmentToSearch> GetCyclingSegmentsToSearch(IEnumerable<Coordinates> coordinates)
@@ -52,8 +52,11 @@ namespace Strava
             foreach (var coord in coordinates)
             {
                 Console.WriteLine("Getting Segments From Coords" + ++numberOfCoords);
-                segmentData = _stravaProvider.GetSegments(getCoordArea(coord), TravelTypes.travelTypesApiParameters[travelEnum.Cycling]).Result;
-                if(segmentData.segments != null)
+                var segmentDataTask = Task.Run(() => _stravaProvider.GetSegments(getCoordArea(coord), TravelTypes.travelTypesApiParameters[travelEnum.Cycling]));
+                segmentDataTask.Wait();
+                segmentData = segmentDataTask.Result;
+
+                if (segmentData.segments != null)
                 {
                     if (segmentData.segments.Count > 0)
                     {

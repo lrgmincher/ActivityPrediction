@@ -13,7 +13,6 @@ namespace Strava
         LeaderBoardResult GetLeaderBoardResultsAsync(int id);
         List<segment> GetCyclingSegments(IEnumerable<Coordinates> coordinates);
         void SaveSegmentsToSearch(List<SegmentToSearch> segmentsToSearch);
-        void SaveDetails(List<SegmentAndEffortData> data);
-        
+        void SaveDetails(List<SegmentAndEffortData> data);        
     }
 }

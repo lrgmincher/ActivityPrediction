@@ -21,7 +21,7 @@ namespace Strava
         string dateRangeQuery;
         string perPageQuery;
         string exploreUrl;
-        public StravaProvider()
+        public StravaProvider(string token)
         {
             baseUrl = "https://www.strava.com/api/v3/";
             
@@ -34,17 +34,17 @@ namespace Strava
             perPageQuery = "per_page=";
             accessTokenQuery = "access_token=";
             dateRangeQuery = "this_month";
-            accessToken = "0b0ca9d7ba064bf81fe973dc683d0e542c950720";
-            
+            accessToken = token;         
         }
 
         public async Task<LeaderBoardResult> GetLeaderBoardResultsAsync(int segmentId)
         {
             int perPage = ApiDetails.MaxResultsPerPage;
             string dateRange = "this_week";
+            string uri = baseUrl + segmentsUrl + "/" + segmentId + "/" + leaderBoardUrl + "?" + perPageQuery + perPage + "&" + dateRangeQuery + dateRange + "&" + accessTokenQuery + accessToken;
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync(baseUrl + segmentsUrl + "/" + segmentId + "/" + leaderBoardUrl + "?" + perPageQuery + perPage + "&" + dateRangeQuery + dateRange + "&" + accessTokenQuery + accessToken);
+                HttpResponseMessage response = await client.GetAsync(uri);
                 var data =  response.Content.ReadAsStringAsync().Result;
                 LeaderBoardResult leaderBoardResult = new LeaderBoardResult();
                 try
@@ -65,7 +65,15 @@ namespace Strava
             using (HttpClient client = new HttpClient())
             {
                 string url = baseUrl + segmentsUrl + "/" + exploreUrl + "?" + boundsQuery + "[" + coordinateBoundaries[0] + "," + coordinateBoundaries[1] + "," + coordinateBoundaries[2] + "," + coordinateBoundaries[3] + "]" + "&" + activityTypeQuery + travelType + "&" + accessTokenQuery + accessToken;
-                HttpResponseMessage response = await client.GetAsync(url);
+                HttpResponseMessage response = new HttpResponseMessage();
+                try
+                {
+                    response = await client.GetAsync(url);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 segmentJsonArray jsonArray = null;
                 string data = await response.Content.ReadAsStringAsync();
                 try

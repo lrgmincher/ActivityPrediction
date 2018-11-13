@@ -14,13 +14,14 @@ using System.Threading.Tasks;
 
 namespace Strava
 {
-    public class Program
+    public class Executions
     {
-        public static void Main()
-        {
-            StravaBusiness stravaBusiness = new StravaBusiness();
 
-            int numberOfLeaderBoardsToCheck = 600;
+        public void StandardExecution(string accessToken)
+        {
+            StravaBusiness stravaBusiness = new StravaBusiness(accessToken);
+
+            int numberOfLeaderBoardsToCheck = 500;
 
             IRandomNumberGen randomNumbersProvider = new PsuedoRandomNumberGen();
 
