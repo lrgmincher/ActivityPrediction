@@ -36,10 +36,17 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,10 +54,30 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.5.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.9.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net46\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\ConcreteClasses\PsuedoRandomNumberGen.cs" />
-    <Compile Include="Business\ConcreteClasses\RealRandomNumbers.cs" />
     <Compile Include="Business\Interfaces\IRandomNumberGen.cs" />
     <Compile Include="Common\FromExternalSources\Coordinates.cs" />
     <Compile Include="Common\FromExternalSources\Domain\ApiDetails.cs" />
@@ -62,15 +89,12 @@
     <Compile Include="Common\InternalData\constants.cs" />
     <Compile Include="Common\InternalData\Cyclist.cs" />
     <Compile Include="Common\InternalData\DataAccessContext.cs" />
+    <Compile Include="Common\searchMetaData.cs" />
     <Compile Include="Common\SectionAndEffortData.cs" />
     <Compile Include="Common\SectionEffortStatistics.cs" />
     <Compile Include="Common\SegmentsToSearch.cs" />
     <Compile Include="Common\TravelTypes.cs" />
-    <Compile Include="Providers\ConcreteClasses\DataAccessProvider.cs" />
-    <Compile Include="Providers\ConcreteClasses\RandomNumbersProvider.cs" />
-    <Compile Include="Providers\Interfaces\IDataAccessProvider.cs" />
     <Compile Include="Business\Interfaces\IStravaBusiness.cs" />
-    <Compile Include="Providers\Interfaces\IRandomNumbersProvider.cs" />
     <Compile Include="Providers\Interfaces\IStravaProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataStore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompileResults\CompileResults.csproj">
+      <Project>{6A05ABD9-8226-49CE-AC6E-5E547098C9E4}</Project>
+      <Name>CompileResults</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

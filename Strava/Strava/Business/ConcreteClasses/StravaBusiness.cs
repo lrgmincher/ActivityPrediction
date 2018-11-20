@@ -14,18 +14,25 @@ namespace Strava
 {
     public class StravaBusiness : IStravaBusiness
     {
-        private IStravaProvider _stravaProvider;
-        private string path = "";
-        public StravaBusiness(string accessToken)
+
+        public string accessToken
         {
-            _stravaProvider = new StravaProvider(accessToken);
+            set { this._stravaProvider.accessToken = value; }
         }
 
-        public LeaderBoardResult GetLeaderBoardResultsAsync(int id)
+
+        private  IStravaProvider _stravaProvider;
+        private string path = "";
+        public StravaBusiness(IStravaProvider stravaProvider)
         {
-           Task<LeaderBoardResult> task = Task.Run(() => _stravaProvider.GetLeaderBoardResultsAsync(id));
+            _stravaProvider = stravaProvider;
+        }
+
+        public LeaderBoardResult GetLeaderBoardResultsAsync(int id, searchMetaData searchMetaData)
+        {
+           Task<LeaderBoardResult> task = Task.Run(() => _stravaProvider.GetLeaderBoardResultsAsync(id, searchMetaData));
             task.Wait();
-            return task.Result;
+            return task?.Result;
         }
 
         public List<SegmentToSearch> GetCyclingSegmentsToSearch(IEnumerable<Coordinates> coordinates)
@@ -45,7 +52,7 @@ namespace Strava
             Random rnd = new Random();
             List<segment> segments = new List<segment>();
             float[] coordarea = new float[4];
-            segmentJsonArray segmentData;
+            segmentJsonArray segmentData = new segmentJsonArray();
 
             int numberOfCoords = 0;
 
@@ -54,9 +61,9 @@ namespace Strava
                 Console.WriteLine("Getting Segments From Coords" + ++numberOfCoords);
                 var segmentDataTask = Task.Run(() => _stravaProvider.GetSegments(getCoordArea(coord), TravelTypes.travelTypesApiParameters[travelEnum.Cycling]));
                 segmentDataTask.Wait();
-                segmentData = segmentDataTask.Result;
+                segmentData = segmentDataTask?.Result;
 
-                if (segmentData.segments != null)
+                if (segmentData?.segments != null)
                 {
                     if (segmentData.segments.Count > 0)
                     {
@@ -79,20 +86,15 @@ namespace Strava
                 coordinates.Longtitude,
                 coordinates.Lattitude + constants.lattitudeWidth,
                 coordinates.Longtitude + constants.longtitudeHeight
-
-                //37.06975F,
-                //88.15225F,
-                //37.06975F + constants.lattitudeWidth,
-                //88.15225F + constants.longtitudeHeight
             };
         }
 
         public void SaveSegmentsToSearch(List<SegmentToSearch> segmentsToSearch)
         {
 
-                path = DataAccessContext.SegmentToSearchPath + "Sections_" + DateTime.Now.Ticks;
+                path = DataAccessContext.SegmentToSearchPath + "Sections_" + DateTime.Now.Ticks + ".csv";
 
-                using (StreamWriter file = new StreamWriter(path))
+            using (StreamWriter file = new StreamWriter(path))
                 {
                 foreach(var segment in segmentsToSearch)
                 {
@@ -105,16 +107,57 @@ namespace Strava
         public void SaveDetails(List<SegmentAndEffortData> data)
         {
             //Dump all data for audit purposes
-            path = DataAccessContext.SegmentToSearchPath + "/Results_" + DateTime.Now.Ticks;
+            path = DataAccessContext.SegmentToSearchPath + "/Results_" + DateTime.Now.Ticks + ".csv";
             using (StreamWriter file = new StreamWriter(path))
             { 
                 try
                 {
-                    file.WriteLine("SectionId, resource_state, name, climb_category, climb_category_desc, avg_grade, start_coords_lattitude,start_coords_longtitude, end_coords_lattitude, end_coords_longtitude, elev_difference, resource_state, distance, points, starred, resource_state, athlete_name, elapsed_name, moving_time, start_date, start_date_local, rank");
+                    file.WriteLine(
+                        "SectionId, " +
+                        "resource_state, " +
+                        "climb_category, " +
+                        "climb_category_desc, " +
+                        "avg_grade, " +
+                        "start_coords_lattitude," +
+                        "start_coords_longtitude, " +
+                        "end_coords_lattitude, " +
+                        "end_coords_longtitude, " +
+                        "elev_difference," +
+                        "distance, " +
+                        "elapsed_time, " +
+                        "moving_time, " +
+                        "start_date, " +
+                        "start_date_local, " +
+                        "rank, " +
+                        "gender, " +
+                        "age group, " +
+                        "weight class"
+                        ); 
+
                     foreach (var result in data)
                     {
-                        file.WriteLine(result.Segment.id + "," + result.Segment.resource_state + "," + result.Segment.name + "," + result.Segment.climb_category + "," + result.Segment.climb_category_desc + "," + result.Segment.avg_grade + "," + result.Segment.start_latlng[0] + "," + result.Segment.start_latlng[1] + "," + result.Segment.end_latlng[0] + "," + result.Segment.end_latlng[1] + "," + result.Segment.elev_difference + "," +
-                            result.Segment.resource_state + "," + result.Segment.distance + "," + result.Segment.points + "," + result.Segment.starred + "," + result.Segment.resource_state + "," + result.Effort.athlete_name + "," + result.Effort.elapsed_time + "," + result.Effort.moving_time + "," + result.Effort.start_date + "," + result.Effort.start_date_local + "," + result.Effort.rank);
+                        file.WriteLine
+                            (
+                            result.Segment.id + "," +
+                            result.Segment.resource_state + "," +
+                            result.Segment.climb_category + "," +
+                            result.Segment.climb_category_desc + "," +
+                            result.Segment.avg_grade + "," +
+                            result.Segment.start_latlng[0] + "," +
+                            result.Segment.start_latlng[1] + "," +
+                            result.Segment.end_latlng[0] + "," +
+                            result.Segment.end_latlng[1] + "," +
+                            result.Segment.elev_difference + "," +
+                            result.Segment.distance + "," +
+                            result.Effort.elapsed_time + "," +
+                            result.Effort.moving_time + "," +
+                            result.Effort.start_date + "," +
+                            result.Effort.start_date_local + "," +
+                            result.Effort.rank +"," +
+                            result.SearchMetaData.Gender + "," +
+                            result.SearchMetaData.age_group + "," +
+                            result.SearchMetaData.weight_class
+                            );
                     };
                 }           
                 catch(Exception e)
@@ -134,11 +177,12 @@ namespace Strava
             {
                 try
                 {
-                    file.WriteLine("SectionId, resource_state, name, climb_category, climb_category_desc, avg_grade, start_coords_lattitude,start_coords_longtitude, end_coords_lattitude, end_coords_longtitude, elev_difference, resource_state, distance, points, starred, meanElapsedTime, meanMovingTime, medianElapsedTime, medianMovingTime, standardDeviationElapsedTime, standardDeviationMovingTime");
+                    file.WriteLine("SectionId, resource_state, climb_category, climb_category_desc, avg_grade, start_coords_lattitude,start_coords_longtitude, end_coords_lattitude, end_coords_longtitude, elev_difference, " +
+                        "distance, starred, meanElapsedTime, meanMovingTime, medianElapsedTime, medianMovingTime, standardDeviationElapsedTime, standardDeviationMovingTime");
                     foreach (var result in data)
                     {
-                        file.WriteLine(result.segment.id + "," + result.segment.resource_state + "," + result.segment.name + "," + result.segment.climb_category + "," + result.segment.climb_category_desc + "," + result.segment.avg_grade + "," + result.segment.start_latlng[0] + "," + result.segment.start_latlng[1] + "," + result.segment.end_latlng[0] + "," + result.segment.end_latlng[1] + "," + result.segment.elev_difference + "," +
-                            result.segment.resource_state + "," + result.segment.distance + "," + result.segment.points + "," + result.segment.starred + "," + result.meanElapsedTime + "," + result.meanMovingTime + "," + result.medianElapsedTime + "," + result.medianMovingTime + "," + result.standardDeviationElapsedTime + "," + result.standardDeviationMovingTime);
+                        file.WriteLine(result.segment.id + "," + result.segment.resource_state + "," + result.segment.climb_category + "," + result.segment.climb_category_desc + "," + result.segment.avg_grade + "," + result.segment.start_latlng[0] + "," + result.segment.start_latlng[1] + "," + result.segment.end_latlng[0] + "," + result.segment.end_latlng[1] + "," + result.segment.elev_difference + "," +
+                            + result.segment.distance + "," + result.segment.starred + "," + result.meanElapsedTime + "," + result.meanMovingTime + "," + result.medianElapsedTime + "," + result.medianMovingTime + "," + result.standardDeviationElapsedTime + "," + result.standardDeviationMovingTime);
                     };
                 }
                 catch (Exception e)

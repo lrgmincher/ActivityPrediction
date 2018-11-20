@@ -92,3 +92,7 @@ C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\obj\Debug
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Strava.dll
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Strava.pdb
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Strava.dll.config
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Unity.Container.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Unity.Abstractions.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Unity.Container.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\InitiateRequests\bin\Unity.Abstractions.pdb

@@ -8,7 +8,6 @@ C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Stra
 C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Newtonsoft.Json.dll
 C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\bin\Debug\Newtonsoft.Json.xml
 C:\Users\JFJSt\Desktop\Development\Machine Learning\Strava\Strava\obj\Debug\Strava.csproj.CopyComplete
-C:\Users\JFJSt\Source\Repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.csprojAssemblyReference.cache
 C:\Users\JFJSt\Source\Repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.csproj.CoreCompileInputs.cache
 C:\Users\JFJSt\Source\Repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.pdb
 C:\Users\JFJSt\Source\Repos\ActivityPrediction\Strava\Strava\bin\Debug\Strava.pdb
@@ -18,3 +17,24 @@ C:\Users\JFJSt\Source\Repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.cs
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Strava.dll.config
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Strava.dll
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\obj\Debug\Strava.csprojAssemblyReference.cache
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\CompileResults.exe
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\CompileResults.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\CompileResults.exe.config
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\CommonServiceLocator.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Abstractions.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Configuration.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Container.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Interception.Configuration.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Interception.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.RegistrationByConvention.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.ServiceLocation.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\CommonServiceLocator.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Abstractions.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Configuration.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Container.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Interception.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.Interception.Configuration.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.RegistrationByConvention.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\Strava\bin\Debug\Unity.ServiceLocation.pdb

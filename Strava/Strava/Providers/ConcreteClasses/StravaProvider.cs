@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Strava.Common;
 using Strava.Common.Domain;
 using Strava.Common.FromExternalSources.Domain;
 using System;
@@ -10,18 +11,21 @@ namespace Strava
 {
     public class StravaProvider : IStravaProvider
     {
+        string IStravaProvider.accessToken { get {return accessToken; } set {accessToken = value; } }
+
+        string accessToken;
         string baseUrl;
         string atheleteId;
         string leaderBoardUrl;
         string segmentsUrl;
-        string accessToken;
         string boundsQuery;
         string activityTypeQuery;
         string accessTokenQuery;
         string dateRangeQuery;
         string perPageQuery;
         string exploreUrl;
-        public StravaProvider(string token)
+        string genderQuery;
+        public StravaProvider()
         {
             baseUrl = "https://www.strava.com/api/v3/";
             
@@ -34,14 +38,23 @@ namespace Strava
             perPageQuery = "per_page=";
             accessTokenQuery = "access_token=";
             dateRangeQuery = "this_month";
-            accessToken = token;         
+            genderQuery = "gender=";
         }
 
-        public async Task<LeaderBoardResult> GetLeaderBoardResultsAsync(int segmentId)
+
+        public async Task<LeaderBoardResult> GetLeaderBoardResultsAsync(int segmentId, searchMetaData searchMetaData)
         {
-            int perPage = ApiDetails.MaxResultsPerPage;
-            string dateRange = "this_week";
-            string uri = baseUrl + segmentsUrl + "/" + segmentId + "/" + leaderBoardUrl + "?" + perPageQuery + perPage + "&" + dateRangeQuery + dateRange + "&" + accessTokenQuery + accessToken;
+            string uri = baseUrl + 
+                segmentsUrl + "/" + 
+                segmentId + "/" + 
+                leaderBoardUrl + "?" + 
+                "per_page=" + searchMetaData.per_page + "&" + 
+                "date_range=" + searchMetaData.date_range + "&" +
+                "gender=" + searchMetaData.Gender + "&" +
+                "age_group=" + searchMetaData.age_group + "&" +
+                "weight_class=" + searchMetaData.weight_class + "&" +
+                accessTokenQuery + accessToken;
+
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
@@ -62,6 +75,7 @@ namespace Strava
 
         public async Task<segmentJsonArray> GetSegments(float[] coordinateBoundaries, string travelType)
         {
+            segmentJsonArray jsonArray = new segmentJsonArray();
             using (HttpClient client = new HttpClient())
             {
                 string url = baseUrl + segmentsUrl + "/" + exploreUrl + "?" + boundsQuery + "[" + coordinateBoundaries[0] + "," + coordinateBoundaries[1] + "," + coordinateBoundaries[2] + "," + coordinateBoundaries[3] + "]" + "&" + activityTypeQuery + travelType + "&" + accessTokenQuery + accessToken;
@@ -74,7 +88,6 @@ namespace Strava
                 {
                     Console.WriteLine(e.Message);
                 }
-                segmentJsonArray jsonArray = null;
                 string data = await response.Content.ReadAsStringAsync();
                 try
                 {

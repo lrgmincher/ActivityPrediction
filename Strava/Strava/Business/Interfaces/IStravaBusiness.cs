@@ -10,7 +10,7 @@ namespace Strava
 {
     public interface IStravaBusiness
     {
-        LeaderBoardResult GetLeaderBoardResultsAsync(int id);
+        LeaderBoardResult GetLeaderBoardResultsAsync(int id, searchMetaData searchMetaData);
         List<segment> GetCyclingSegments(IEnumerable<Coordinates> coordinates);
         void SaveSegmentsToSearch(List<SegmentToSearch> segmentsToSearch);
         void SaveDetails(List<SegmentAndEffortData> data);        

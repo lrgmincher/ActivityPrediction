@@ -11,17 +11,24 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Unity;
 
 namespace Strava
 {
     public class Executions
     {
+        StravaBusiness stravaBusiness;
 
         public void StandardExecution(string accessToken)
         {
-            StravaBusiness stravaBusiness = new StravaBusiness(accessToken);
+            var container = new UnityContainer();
+            container.RegisterType<IStravaProvider, StravaProvider>();
+            container.RegisterType<IStravaBusiness, StravaBusiness>();
+            stravaBusiness = container.Resolve<StravaBusiness>();
 
-            int numberOfLeaderBoardsToCheck = 500;
+            stravaBusiness.accessToken = accessToken;
+
+            int numberOfLeaderBoardsToCheck =600;
 
             IRandomNumberGen randomNumbersProvider = new PsuedoRandomNumberGen();
 
@@ -34,15 +41,16 @@ namespace Strava
             LeaderBoardResult leaderBoardResults;
             List<SegmentAndEffortData> sectionAndEffortData = new List<SegmentAndEffortData>();
 
+
             foreach(var segementToSearch in segmentsToSearch)
             {
-                leaderBoardResults = stravaBusiness.GetLeaderBoardResultsAsync(segementToSearch.id);
+                searchMetaData metaDataToSearch = searchMetaData.randomMetaData();
+                leaderBoardResults = stravaBusiness.GetLeaderBoardResultsAsync(segementToSearch.id, metaDataToSearch);
                 if (leaderBoardResults.entries?.Count == leaderBoardResults.entry_count)
                 {
                    foreach(var entry in leaderBoardResults.entries)
                     {
-                        sectionAndEffortData.Add(new SegmentAndEffortData(segementToSearch, entry));
-
+                        sectionAndEffortData.Add(new SegmentAndEffortData(segementToSearch, entry, metaDataToSearch));
                     }
                 }
                 else Console.WriteLine("not all entries have been selected. Total Entries = " + leaderBoardResults.entry_count + ", Returned results = " + leaderBoardResults.entries?.Count ?? "0");

@@ -1,7 +1,10 @@
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\bin\Debug\CompileResults.exe.config
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\bin\Debug\CompileResults.exe
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\bin\Debug\CompileResults.pdb
-C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.csprojAssemblyReference.cache
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.csproj.CoreCompileInputs.cache
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.exe
 C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.pdb
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.csproj.CopyComplete
+C:\Users\JFJSt\source\repos\ActivityPrediction\Strava\CompileResults\obj\Debug\CompileResults.csprojAssemblyReference.cache

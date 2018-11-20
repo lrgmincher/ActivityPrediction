@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Strava.Common
 {
-    public struct SegmentAndEffortData
+    public class SegmentAndEffortData
     {
         public segment Segment { get; set; }
         public entry Effort { get; set; }
-        public SegmentAndEffortData(segment segment, entry leaderBoardEntry)
+        public searchMetaData SearchMetaData { get; set; }
+        public SegmentAndEffortData(segment segment, entry leaderBoardEntry, searchMetaData searchMetaData)
         {
             Segment = segment;
             Effort = leaderBoardEntry;
+            SearchMetaData = searchMetaData;
         }
 
     }
