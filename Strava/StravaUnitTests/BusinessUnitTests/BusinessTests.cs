@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace StravaUnitTests.BusinessUnitTests
@@ -39,18 +40,21 @@ namespace StravaUnitTests.BusinessUnitTests
             };
             emptyCoords = new List<Coordinates>();
         }
-        //[TestMethod]
-        //public void GetLeaderBoardResultSimplyReturnsProviderResponse()
-        //{
-        //    mockStravaProvider.Setup(l => l.GetLeaderBoardResultsAsync(It.IsAny<int>(), It.IsAny<searchMetaData>())).Returns(expectedLeaderBoardResultTask);
+        [TestMethod]
+        public void GetLeaderBoardResultSimplyReturnsProviderResponse()
+        {
+            mockStravaProvider.Setup(l => l.GetLeaderBoardResultsAsync(It.IsAny<int>(), It.IsAny<searchMetaData>())).Returns(expectedLeaderBoardResultTask);
 
-        //    StravaBusiness stravaBusiness = new StravaBusiness(mockStravaProvider.Object);
-                
+            StravaBusiness stravaBusiness = new StravaBusiness(mockStravaProvider.Object);
 
-        //    var res = stravaBusiness.GetLeaderBoardResultsAsync(0, new searchMetaData());
+            Thread.Sleep(500);
 
-        //    Assert.AreEqual(res.effort_count, expectedLeaderBoardResult.effort_count);
-        //}
+            var res = stravaBusiness.GetLeaderBoardResultsAsync(0, new searchMetaData());
+            Thread.Sleep(500);
+
+
+            Assert.AreEqual(res.effort_count, expectedLeaderBoardResult.effort_count);
+        }
 
         [TestMethod]
         public void GetCyclingSegmentsReturnNoResults()

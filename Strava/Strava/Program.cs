@@ -4,13 +4,8 @@ using Strava.Common;
 using Strava.Common.Domain;
 using Strava.Common.FromExternalSources;
 using Strava.Common.FromExternalSources.Domain;
-using Strava.Providers.ConcreteClasses;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Unity;
 
 namespace Strava
